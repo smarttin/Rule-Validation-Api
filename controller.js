@@ -45,7 +45,7 @@ const createDetails = (req, res, next) => {
     });
   }
 
-  // check if data is string / array / object
+  // check if data is either string / array / object
   if (!(isObject(data) || isString(data) || isArray(data))) {
     return res.status(400).json({
       message: 'Data should be either string, object or array',
@@ -54,15 +54,11 @@ const createDetails = (req, res, next) => {
     });
   }
 
+  // check for field validation errors
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     let validationErrors = {};
     errors.array().forEach((error) => (validationErrors[error.param] = error.msg));
-
-    // console.log(errors.array());
-    console.log(validationErrors);
-
-    // if rule fields and data fields are validated ?? will it get here ??
     return res.status(400).json({
       message: `field ${rule.field} failed validation.`,
       status: 'error',
