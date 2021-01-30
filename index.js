@@ -2,7 +2,7 @@ import express from 'express';
 import router from './route.js';
 
 const app = express();
-
+const PORT = process.env.PORT || 3000;
 //ensures that every incoming request is a valid json
 app.use(express.json());
 
@@ -26,4 +26,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(3000, console.log('server is running on localhost:3000'));
+app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
