@@ -11,13 +11,7 @@ const validate = () => {
       .isIn(['eq', 'neq', 'gt', 'gte', 'contains'])
       .withMessage('condition must be one of  eg - eq, neq, gt, gte, contains.')
       .bail(),
-    body('rule.condition_value')
-      .notEmpty()
-      .withMessage('condition_value is required.')
-      .bail()
-      .isNumeric()
-      .withMessage('condition_value must be number.')
-      .bail(),
+    body('rule.condition_value').notEmpty().withMessage('condition_value is required.').bail(),
     body('data').notEmpty().withMessage('data is required.').bail(),
   ];
 };
